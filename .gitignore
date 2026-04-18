@@ -1,0 +1,92 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Local env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Log files
+*.log
+logs/
+
+# Database
+*.sqlite3
+*.db
+
+# Media and static files
+/statics/
+
+# Backup files
+*.bak
+*.tmp
+
+# Zip files
+*.zip
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.Z
+
+# Project-specific directories
+temp_yolov5/
+inputs/
+outputs/
+
+# Model files (keep ONNX models, ignore others)
+*.h5
+*.hdf5
+*.ckpt
+*.pth
+*.pt
+*.pb
+*.tflite
+*.mlmodel
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.flv
+*.wmv
+*.webm
+*.m4v
+*.3gp
+*.3g2
+*.mpeg
+*.mpg
+*.mpeg4
+*.mp2

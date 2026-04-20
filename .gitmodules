@@ -1,0 +1,3 @@
+[submodule "fastapi_server/yolo_onnx/mymodel/yolov5"]
+	path = fastapi_server/yolo_onnx/mymodel/yolov5
+	url = https://github.com/ultralytics/yolov5.git

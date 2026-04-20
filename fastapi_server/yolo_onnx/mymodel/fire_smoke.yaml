@@ -1,0 +1,8 @@
+names:
+- fire
+- smoke
+nc: 2
+path: F:\DLCourseDesign\fastapi_server\yolo_onnx\mymodel\datasets
+test: test/images
+train: train/images
+val: val/images

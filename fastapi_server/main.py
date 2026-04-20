@@ -1,18 +1,38 @@
 import os
 import sys
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+script_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, script_dir)
 
 from yolo_onnx.proccess import YOLODetector, ModelType
 
+def ensure_model_ready():
+    """确保模型已准备就绪，如果需要则转换模型"""
+    pt_model_path = os.path.join(script_dir, "yolo_onnx/model/best.pt")
+    onnx_model_path = os.path.join(script_dir, "weights/fire.onnx")
+    
+    # 检查ONNX模型是否存在或是否需要更新
+    if not os.path.exists(onnx_model_path) or os.path.getmtime(pt_model_path) > os.path.getmtime(onnx_model_path):
+        print("正在转换模型...")
+        # 运行模型转换脚本
+        convert_script = os.path.join(script_dir, "convert_model.py")
+        result = os.system(f"{sys.executable} {convert_script}")
+        if result != 0:
+            print("错误: 模型转换失败")
+            return False
+    return True
 
 def main():
-    model_path = "weights/fire.onnx"
-    input_dir = "inputs"
-    output_dir = "outputs"
+    # 确保模型已准备就绪
+    if not ensure_model_ready():
+        return
+    
+    model_path = os.path.join(script_dir, "weights/fire.onnx")
+    input_dir = os.path.join(script_dir, "inputs")
+    output_dir = os.path.join(script_dir, "outputs")
 
     print("=" * 50)
-    print("YOLOv5 火灾检测系统")
+    print("YOLOv5 火灾检测")
     print("=" * 50)
 
     if not os.path.exists(input_dir):
@@ -120,3 +140,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
+

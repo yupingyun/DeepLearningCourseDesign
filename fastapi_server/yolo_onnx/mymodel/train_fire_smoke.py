@@ -45,26 +45,19 @@ def clone_yolov5():
     
     return yolov5_dir
 
-def train_model(yolov5_dir, config_path, epochs=50, batch_size=4, imgsz=320):
+def train_model(yolov5_dir, config_path, epochs=25, batch_size=2, imgsz=64):
     """训练模型"""
-    # 检查CUDA是否可用
-    import torch
-    if torch.cuda.is_available():
-        device = '0'  # 如果有多个GPU，可以指定 "0,1,2"
-    else:
-        device = 'cpu'
-        print("警告：CUDA不可用，将使用CPU训练，速度会很慢！")
-    
     train_cmd = [
         sys.executable,
         os.path.join(yolov5_dir, 'train.py'),
         '--data', config_path,
-        '--weights', 'yolov5s.pt',
+        '--weights', 'yolov5s.pt',  # 使用预训练权重
         '--epochs', str(epochs),
         '--batch-size', str(batch_size),
         '--imgsz', str(imgsz),
         '--cache', 'none',
-        '--device', device,  # 修复这里
+        '--device', '0',
+        '--workers', '0',  # 禁用多线程
         '--project', 'runs/train',
         '--name', 'fire_smoke_detector'
     ]
